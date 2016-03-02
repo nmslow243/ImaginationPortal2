@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Imagination_Portal_2._0.Models.Issue>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Issues", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Details", "Details", "Issues", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Delete", "Delete", "Issues", new { id = item.Id }, new { }) | 
+            @Html.ActionLink("Add Solution", "Create", "Solutions", new { id = item.Id }, new { })
+        </td>
+    </tr>
+    if (item.Solutions.Count > 0)
+    {
+            <tr>
+                <th>Solutions</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Solutions.ElementAt(0).Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Solutions.ElementAt(0).Description)
+                </th>
+                <th></th>
+            </tr>
+
+            foreach (var solution in item.Solutions)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => solution.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => solution.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Solutions", new { id = solution.Id }, new { }) |
+                        @Html.ActionLink("Delete", "Delete", "Solutions", new { id = solution.Id }, new { }) |
+                        @Html.ActionLink("Add Review", "Create", "Solutions", new { id = solution.Id }, new { })
+                    </td>
+                </tr>
+                if (solution.Reviews.Count > 0)
+                {
+                    <tr>
+                        <th></th>
+                        <th>Reviews</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Solutions.ElementAt(0).Reviews.ElementAt(0).Score)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Solutions.ElementAt(0).Reviews.ElementAt(0).Comment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Solutions.ElementAt(0).Reviews.ElementAt(0).UserName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    foreach (var review in solution.Reviews)
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @Html.DisplayFor(modelItem => review.Score)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => review.Comment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => review.UserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.Id }, new { }) |
+                                @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.Id }, new { })
+                            </td>
+                        </tr>
+
+                    }
+                }
+            }
+    }
+}
+
+</table>

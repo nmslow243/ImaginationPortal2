@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron">
+    <h1>Imagination Portal 2.0</h1>
+    <p class="lead">Welcome to the new Imagination Portal. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis nunc ut euismod malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed accumsan ante consectetur eros accumsan.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Tutorial</h2>
+        <p>Want help getting started? Check out the tutorial here.</p>
+        <p><a class="btn btn-default" href="@Url.Action("TutorialStep1", "Solutions")"><span class="glyphicon glyphicon-book"></span> Tutorial &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Create a solution to issues with guided steps.
+        </p>
+        <p>
+            <div class="btn-group">
+                <a class="btn btn-primary" href="@Url.Action("CreateStep1", "Solutions")"><span class="glyphicon glyphicon-plus"></span> Get Started &raquo;</a>
+                <a class="btn btn-default" href="@Url.Action("Create", "Solutions")"><span class="glyphicon glyphicon-forward"></span> Quick Create &raquo;</a>
+            </div>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Current challenges</h2>
+        <p>Check out current challenges.</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Issues")"><span class="glyphicon glyphicon-tasks"></span> Challenges &raquo;</a></p>
+    </div>
+</div>

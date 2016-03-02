@@ -1,0 +1,187 @@
+﻿@model Imagination_Portal_2._0.Models.Solution
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Solution</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Issue @Html.DisplayNameFor(model => model.Issue.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feelings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feelings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Achieve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Achieve)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RootCauses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RootCauses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Elements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Elements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Analogy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Analogy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Combine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Combine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Substitution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Substitution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MagnifyMinimize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MagnifyMinimize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adapt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adapt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherUse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Eliminate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eliminate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rearrange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rearrange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reverse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reverse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opposite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opposite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisualizeNevers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisualizeNevers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EvaluateIdeas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvaluateIdeas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fatal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fatal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

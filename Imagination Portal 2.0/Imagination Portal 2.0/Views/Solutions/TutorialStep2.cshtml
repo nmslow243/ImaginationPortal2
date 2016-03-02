@@ -1,0 +1,107 @@
+﻿@model Imagination_Portal_2._0.Models.CreateStep2
+
+@{
+    ViewBag.Title = "Create with Steps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Generate Ideas</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <div class="video-container">
+            <iframe width="854" height="480" src="https://www.youtube.com/embed/_YmmwAat9MI" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3>Use one of our "Idea Generators" to make a list of ideas (Use any of the following "generators")</h3>
+        <br/>
+        <h4>Combine</h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> What two (or more) separate things can you put together to create something new?</label>
+                @*@Html.EditorFor(model => model.Combine, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Combine, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <h4>Substitution</h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> What can be swapped in or out to create something new?</label>
+                @*@Html.EditorFor(model => model.Substitution, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Substitution, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <h4>Magnify, Reduce, Minimize</h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> What feature of the challenge can be magnified or minimized? </label>
+                @*@Html.EditorFor(model => model.MagnifyMinimize, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MagnifyMinimize, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <h4>Others </h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Adapt - What can be borrowed and applied in a different way?</label>
+                @*@Html.EditorFor(model => model.Adapt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Adapt, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Put to another use - How can we apply something in a new way?</label>
+                @*@Html.EditorFor(model => model.OtherUse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OtherUse, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Eliminate - What can be removed?</label>
+                @*@Html.EditorFor(model => model.Eliminate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Eliminate, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Rearrange - What if you put things in a new order?</label>
+                @*@Html.EditorFor(model => model.Rearrange, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rearrange, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Reverse and assumption - What if?</label>
+                @*@Html.EditorFor(model => model.Reverse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reverse, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Opposite - What would be an opposite focus? </label>
+                @*@Html.EditorFor(model => model.Opposite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Opposite, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="btn-group">
+            @Html.ActionLink("Step 3", "TutorialStep3", "Solutions", new { }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Return Home", "Index", "Home", new { }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

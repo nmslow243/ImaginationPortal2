@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Imagination Portal 2.0</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                <a class="navbar-brand" href=""><img src="~/Content/Images/logo.png" alt="Imagination Portal"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Tutorial", "TutorialStep1", "Solutions")</li>
+                    <li>@Html.ActionLink("Challenges", "Index", "Issues")</li>
+                    <li>@Html.ActionLink("Create Solution", "CreateStep1", "Solutions")</li>
+                    <li>@Html.ActionLink("Quick Create", "Create", "Solutions")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Imagination Portal 2.0</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

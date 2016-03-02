@@ -1,0 +1,85 @@
+﻿@font-face {
+	font-family: 'Break Bold';
+	src: url('Fonts/BreakBold.ttf') format('truetype'); 
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Break Extra Light';
+	src: url('Fonts/BreakExtraLight.ttf') format('truetype'); 
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Break Light';
+	src: url('Fonts/BreakLight.ttf') format('truetype'); 
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Break Regular';
+	src: url('Fonts/BreakRegular.ttf') format('truetype'); 
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'Break Semi Bold';
+	src: url('Fonts/BreakSemiBold.ttf') format('truetype'); 
+	font-style: normal;
+	font-weight: 400;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select {
+    max-width: 280px;
+}*/
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+.navbar-brand>img {
+  height: 100%;
+  width: auto;
+}
+h1 {
+    font-family: 'Break Bold';
+}
+.navbar-nav {
+    font-family: 'Break Bold';
+}
+.label-normal {
+    font-weight: normal;
+    width: 100%;
+}
+.video-container { 
+   position: relative; /* keeps the aspect ratio */ 
+   padding-bottom: 56.25%; /* fine tunes the video positioning */ 
+   padding-top: 60px; overflow: hidden;
+   max-width: 700px;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
