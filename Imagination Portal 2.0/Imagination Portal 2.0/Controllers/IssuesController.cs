@@ -115,6 +115,16 @@ namespace Imagination_Portal_2._0.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetIssues()
+        {
+            var issues = db.Issues.Select(c => new
+            {
+                ID = c.Id,
+                Text = c.Name
+            });
+            return Json(issues, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
