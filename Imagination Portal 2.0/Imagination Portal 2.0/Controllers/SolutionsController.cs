@@ -53,6 +53,7 @@ namespace Imagination_Portal_2._0.Models
         {
             if (id == null)
             {
+                ViewBag.issues = new SelectList(db.Issues, "Id", "Name");
                 return View();
             }
             else
@@ -64,6 +65,7 @@ namespace Imagination_Portal_2._0.Models
                 }
                 CreateFinal Final = new CreateFinal();
                 Final.InjectFrom(solution);
+                ViewBag.issues = new SelectList(db.Issues, "Id", "Name");
                 return View(Final);
             }
         }
