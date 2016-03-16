@@ -7,7 +7,7 @@
 <script>
     
 </script>
-<h2>Create</h2>
+<h1>Create Solution</h1>
 
 
 @using (Html.BeginForm()) 
@@ -15,7 +15,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Solution</h4>
+        <h6>This is the final step to give your solution a title and pick the challenge you are solving.</h6>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
