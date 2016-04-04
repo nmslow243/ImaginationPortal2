@@ -21,6 +21,7 @@ namespace Imagination_Portal_2._0.Models
 
         public virtual Issue Issue { get; set; }
 
+
     }
     public class CreateStep1
     {
@@ -166,5 +167,13 @@ namespace Imagination_Portal_2._0.Models
         public virtual Issue Issue { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
+        public int? UserId { get; set; }
+
+        public Guid userGUID { get; set; }
+        
+        public int currentStatus { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using Imagination_Portal_2._0.Models;
 namespace Imagination_Portal_2._0.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : AppController
     {
         public ManageController()
         {

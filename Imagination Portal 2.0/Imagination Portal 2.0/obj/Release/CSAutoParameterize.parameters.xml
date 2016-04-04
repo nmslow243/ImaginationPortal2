@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ImaginationPortalConnection-Web.config Connection String" description="ImaginationPortalConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\ImaginationPortal.mdf;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Slowbro\\Documents\\GitHub\\ImaginationPortal2\\Imagination\ Portal\ 2\.0\\Imagination\ Portal\ 2\.0\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ImaginationPortalConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ImaginationPortalConnection_DatabasePublish-Web.config Connection String" description="ImaginationPortalConnection_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="ImaginationPortalConnection_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Slowbro\\Documents\\GitHub\\ImaginationPortal2\\Imagination\ Portal\ 2\.0\\Imagination\ Portal\ 2\.0\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ImaginationPortalConnection_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

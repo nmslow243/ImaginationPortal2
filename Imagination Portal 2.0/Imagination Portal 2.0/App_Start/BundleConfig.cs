@@ -22,11 +22,13 @@ namespace Imagination_Portal_2._0
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/hamburger.js",
+                      //"~/Scripts/accordian.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-theme.css",
                       "~/Content/hamburger.css",
+                      //"~/Content/accordian.less",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imagination_Portal_2._0.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Imagination_Portal_2._0.Models
 {
-    public class ReviewsController : Controller
+    public class ReviewsController : AppController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -57,9 +58,10 @@ namespace Imagination_Portal_2._0.Models
         {
             if (ModelState.IsValid)
             {
+                review.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
                 db.Reviews.Add(review);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Issues", new { id = db.Solutions.Find(review.SolutionId).IssueId });
+                return RedirectToAction("Index", "Challenges", new { });
             }
 
             return View(review);
@@ -73,7 +75,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Review review = db.Reviews.Find(id);
-            if (review == null)
+            if (review == null || review.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
             {
                 return HttpNotFound();
             }
@@ -91,7 +93,7 @@ namespace Imagination_Portal_2._0.Models
             {
                 db.Entry(review).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Issues", new { id = db.Solutions.Find(review.SolutionId).IssueId });
+                return RedirectToAction("Index", "Challenges", new { });
             }
             return View(review);
         }

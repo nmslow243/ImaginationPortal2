@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Imagination_Portal_2._0.Models;
+using EntityFramework.Extensions;
 
 namespace Imagination_Portal_2._0.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : AppController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
 
         public AccountController()
@@ -77,6 +79,11 @@ namespace Imagination_Portal_2._0.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var User = UserManager.FindByName(model.Email);
+                    HttpCookie cookie = new HttpCookie("guidCookie");
+                    cookie.Values["GUID"] = User.GUID.ToString();
+
+                    HttpContext.Response.Cookies.Add(cookie);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -154,10 +161,13 @@ namespace Imagination_Portal_2._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, GUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]) };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
+                    db.Solutions.Where(x => x.userGUID == user.GUID).Update(x => new Solution { UserId = int.Parse(User.Identity.GetUserId()) });
+                    db.Reviews.Where(x => x.userGUID == user.GUID).Update(x => new Review { UserId = int.Parse(User.Identity.GetUserId()) });
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -374,6 +384,7 @@ namespace Imagination_Portal_2._0.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
@@ -394,6 +405,10 @@ namespace Imagination_Portal_2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            HttpCookie guestCookie = new HttpCookie("guidCookie");
+            guestCookie["GUID"] = null;
+            guestCookie.Expires = DateTime.Now.AddDays(-1);
+            Request.Cookies.Add(guestCookie);
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
@@ -465,4 +480,31 @@ namespace Imagination_Portal_2._0.Controllers
         }
         #endregion
     }
+    public class AppUser : ClaimsPrincipal
+    {
+        public AppUser(ClaimsPrincipal principal)
+            : base(principal)
+        {
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.FindFirst(ClaimTypes.Name).Value;
+            }
+        }
+
+    }
+    public abstract class AppController : Controller
+    {
+        public AppUser CurrentUser
+        {
+            get
+            {
+                return new AppUser(this.User as ClaimsPrincipal);
+            }
+        }
+    }
+
 }

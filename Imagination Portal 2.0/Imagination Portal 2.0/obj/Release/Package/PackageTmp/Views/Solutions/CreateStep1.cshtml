@@ -1,0 +1,71 @@
+﻿@model Imagination_Portal_2._0.Models.CreateStep1
+
+@{
+    ViewBag.Title = "Create with Steps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Know the challenge</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h6>Note: Always make sure to write down and record your thoughts!</h6>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3>Start with the end in mind</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> What would you like to see, feel, or hear about your solution to the challenge?</label>
+                @Html.EditorFor(model => model.Feelings, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Feelings, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> What do you want to achieve? (Set goals)</label>
+                @Html.EditorFor(model => model.Achieve, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Achieve, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Make a list of the unique features of the challenge</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Identify the root cause[s] of the problem.</label>
+                @Html.EditorFor(model => model.RootCauses, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RootCauses, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Identify the elements that make problem difficult to solve.</label>
+                @Html.EditorFor(model => model.Elements, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Elements, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Reframe the challenge</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Come up with a way to familiarize the challenge. <br/>(Think of analogies from nature, music, or some other context that has similar features as the challenge.)</label>
+                @Html.EditorFor(model => model.Analogy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Analogy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <input type="submit" value="Step 2" class="btn btn-primary" />
+            @Html.ActionLink("Return Home", "Index", "Home", new { }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

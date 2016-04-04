@@ -7,10 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Omu.ValueInjecter;
+using Imagination_Portal_2._0.Controllers;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace Imagination_Portal_2._0.Models
 {
-    public class SolutionsController : Controller
+    public class SolutionsController : AppController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -19,7 +22,11 @@ namespace Imagination_Portal_2._0.Models
         {
             return View(db.Solutions.ToList());
         }
-
+        // GET: Solutions/Drafts
+        public ActionResult Drafts()
+        {
+            return View(db.Solutions.ToList().Where(x => x.currentStatus < 4 && x.userGUID == Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"])));
+        }
         // GET: Solutions/Details/5
         public ActionResult Details(int? id)
         {
@@ -59,7 +66,7 @@ namespace Imagination_Portal_2._0.Models
             else
             {
                 Solution solution = db.Solutions.Find(id);
-                if (solution == null)
+                if (solution == null || solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
                 {
                     return HttpNotFound();
                 }
@@ -85,16 +92,23 @@ namespace Imagination_Portal_2._0.Models
                 if (Final.Id <= 0)
                 {
                     solution.InjectFrom(Final);
+                    if (Request.IsAuthenticated)
+                    {
+                        solution.UserId = int.Parse(User.Identity.GetUserId());
+                    }
+                    solution.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
+                    solution.currentStatus = (int)Utilities.solutionStatuses.Complete;
                     db.Solutions.Add(solution);
                 }
                 else
                 {
                     solution = db.Solutions.Find(Final.Id);
                     solution.InjectFrom(Final);
+                    solution.currentStatus = (int)Utilities.solutionStatuses.Complete;
                     db.Entry(solution).State = EntityState.Modified;
                 }
                 db.SaveChanges();
-                return RedirectToAction("Details", "Solutions", new { id = solution.Id });
+                return RedirectToAction("Index", "Challenges", new { });
                 //return RedirectToAction("Details", "Issues", new { id = solution.IssueId });
             }
 
@@ -111,7 +125,7 @@ namespace Imagination_Portal_2._0.Models
             else
             {
                 Solution solution = db.Solutions.Find(id);
-                if (solution == null)
+                if (solution == null || solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
                 {
                     return HttpNotFound();
                 }
@@ -135,12 +149,20 @@ namespace Imagination_Portal_2._0.Models
                 if (Step1.Id <= 0)
                 {
                     solution.InjectFrom(Step1);
+                    if (Request.IsAuthenticated)
+                    {
+                        solution.UserId = int.Parse(User.Identity.GetUserId());
+                    }
+                    solution.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
+                    solution.currentStatus = (int)Utilities.solutionStatuses.Step2;
                     db.Solutions.Add(solution);
+
                 }
                 else
                 {
                     solution = db.Solutions.Find(Step1.Id);
                     solution.InjectFrom(Step1);
+                    solution.currentStatus = (int)Utilities.solutionStatuses.Step2;
                     db.Entry(solution).State = EntityState.Modified;
                 }
                 db.SaveChanges();
@@ -157,7 +179,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Solution solution = db.Solutions.Find(id);
-            if (solution == null)
+            if (solution == null || solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
             {
                 return HttpNotFound();
             }
@@ -178,8 +200,8 @@ namespace Imagination_Portal_2._0.Models
 
                 Solution solution = db.Solutions.Find(Step2.Id);
                 solution.InjectFrom(Step2);
+                solution.currentStatus = (int)Utilities.solutionStatuses.Step3;
                 db.Entry(solution).State = EntityState.Modified;
-                
                 db.SaveChanges();
                 return RedirectToAction("CreateStep3", "Solutions", new { id = solution.Id });
             }
@@ -194,7 +216,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Solution solution = db.Solutions.Find(id);
-            if (solution == null)
+            if (solution == null || solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
             {
                 return HttpNotFound();
             }
@@ -215,6 +237,7 @@ namespace Imagination_Portal_2._0.Models
 
                 Solution solution = db.Solutions.Find(Step3.Id);
                 solution.InjectFrom(Step3);
+                solution.currentStatus = (int)Utilities.solutionStatuses.Final;
                 db.Entry(solution).State = EntityState.Modified;
 
                 db.SaveChanges();
@@ -232,7 +255,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Solution solution = db.Solutions.Find(id);
-            if (solution == null)
+            if (solution == null || solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
             {
                 return HttpNotFound();
             }

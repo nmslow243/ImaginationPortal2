@@ -1,0 +1,88 @@
+﻿@model Imagination_Portal_2._0.Models.CreateStep3
+
+@{
+    ViewBag.Title = "Create with Steps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Generate Ideas</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="video-container">
+            <iframe width="854" height="480" src="https://www.youtube.com/embed/inJfM9ieAuA" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3>Visualize "Nevers"</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Come up with as many "Nevers" as you can think of; the ideas which would "never" be plausible.</label>
+                <label class="col-md-2 label-normal">> Ask what if one of the "Never" ideas were used as the solution. Record the possibilities that come to mind.</label>
+                @*@Html.EditorFor(model => model.VisualizeNevers, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.VisualizeNevers, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <h3>Evaluate your ideas</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="col-md-2 label-normal">> Visualize your ideas by putting them all on a table or wall.</label>
+                <label class="col-md-2 label-normal">> Rearrange them, combine them, add to them. <br />(Make sure when you combine or group ideas you do not hide the unique value of the individual ideas.) </label>
+                @*@Html.EditorFor(model => model.EvaluateIdeas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EvaluateIdeas, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <h3>Rank your ideas</h3>
+        <div class="form-group">
+            <label class="col-md-2 label-normal">> Give each idea a <strong>Vital</strong> and <strong>Fatal</strong> score (1-5), based on the following questions:</label>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Vital</h4>
+                <ul>
+                    <li>Is the solution/idea achievable?</li>
+                    <li>Does the solution/idea stick to the mission of the challenge issuer?</li>
+                    <li>Would it be easy for the organization to commit to the solution/idea?</li>
+                </ul>
+                @*@Html.EditorFor(model => model.Vital, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Vital, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <h4>Fatal</h4>
+                <ul>
+                    <li>Will the response of he community/media to the solution/idea be negative?</li>
+                    <li>Is the solution/idea feasible for the organization's budget?</li>
+                    <li>Is the timing good or bad for the solution/idea?</li>
+                </ul>
+                @*@Html.EditorFor(model => model.Fatal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fatal, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <div class="col-md-10">
+                    <label class="col-md-2 label-normal">> What two (or more) separate things can you put together to create something new?</label>
+                    @Html.DropDownList("IssueId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IssueId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="btn-group">
+            @Html.ActionLink("Create Solution", "CreateStep1", "Solutions", new { }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Return Home", "Index", "Home", new { }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

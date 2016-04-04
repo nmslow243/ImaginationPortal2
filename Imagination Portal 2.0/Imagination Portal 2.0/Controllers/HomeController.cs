@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Imagination_Portal_2._0.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AppController
     {
         public ActionResult Index()
         {
