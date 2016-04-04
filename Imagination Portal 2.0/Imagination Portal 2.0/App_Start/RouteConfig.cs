@@ -12,7 +12,11 @@ namespace Imagination_Portal_2._0
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapRoute(
+               "Challenges", // Route name
+               "Challenges/{action}/{id}", // URL with parameters
+               new { controller = "Issues", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+               );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

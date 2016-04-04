@@ -1,0 +1,219 @@
+﻿@model IEnumerable<Imagination_Portal_2._0.Models.Solution>
+
+@{
+    ViewBag.Title = "My Drafts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>My Drafts</h1>
+<br />
+
+<div class="panel-group">
+    @{int i = 1;}
+    @foreach (var item in Model)
+    {
+        
+        <div class="panel panel-default">
+            <div class="panel-heading accordion-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">
+                        @(i)
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse@(i)" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Feelings)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Feelings)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Achieve)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Achieve)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.RootCauses)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.RootCauses)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Elements)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Elements)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Analogy)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Analogy)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Combine)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Combine)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Substitution)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Substitution)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.MagnifyMinimize)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.MagnifyMinimize)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Adapt)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Adapt)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.OtherUse)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.OtherUse)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Eliminate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Eliminate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Rearrange)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Rearrange)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Reverse)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Reverse)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Opposite)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Opposite)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.VisualizeNevers)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.VisualizeNevers)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EvaluateIdeas)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.EvaluateIdeas)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Vital)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Vital)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fatal)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(modelItem => item.Fatal)
+                        </dd>
+
+                    </dl>
+                    
+                </div>
+                <div class="panel-footer">
+                    @if(item.currentStatus == (int)Utilities.solutionStatuses.Step1) {
+                        @Html.ActionLink("Step 1", "CreateStep1", "Solutions", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    } else {
+                        @Html.ActionLink("Step 1", "CreateStep1", "Solutions", new { id = item.Id }, new { @class = "btn btn-default" })
+                    }
+                    |
+                    @if (item.currentStatus == (int)Utilities.solutionStatuses.Step2)
+                    {
+                        @Html.ActionLink("Step 2", "CreateStep2", "Solutions", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Step 2", "CreateStep2", "Solutions", new { id = item.Id }, new { @class = "btn btn-default" })
+                    }
+                    |
+                    @if (item.currentStatus == (int)Utilities.solutionStatuses.Step3)
+                    {
+                        @Html.ActionLink("Step 3", "CreateStep3", "Solutions", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Step 3", "CreateStep3", "Solutions", new { id = item.Id }, new { @class = "btn btn-default" })
+                    }
+                    |
+                    @if (item.currentStatus == (int)Utilities.solutionStatuses.Final)
+                    {
+                        @Html.ActionLink("Final", "Create", "Solutions", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Final", "Create", "Solutions", new { id = item.Id }, new { @class = "btn btn-default" })
+                    }
+
+                    <div class="pull-right">
+                        @Html.ActionLink("Delete", "Delete", "Challenges", new { id = item.Id }, new { @class = "btn btn-default" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        i++;
+    }
+
+</div>
