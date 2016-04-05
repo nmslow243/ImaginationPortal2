@@ -66,3 +66,5 @@ C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imag
 C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imagination Portal 2.0\obj\Release\Imagination Portal 2.0.csproj.GenerateResource.Cache
 C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imagination Portal 2.0\obj\Release\Imagination Portal 2.0.dll
 C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imagination Portal 2.0\obj\Release\Imagination Portal 2.0.pdb
+C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imagination Portal 2.0\obj\Release\Imagination_Portal_2._0.Migrations.updateUserID.resources
+C:\Users\Slowbro\Documents\GitHub\ImaginationPortal2\Imagination Portal 2.0\Imagination Portal 2.0\obj\Release\Imagination_Portal_2._0.Migrations.fixForeignKeys.resources

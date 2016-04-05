@@ -187,6 +187,14 @@
     <Compile Include="Migrations\201604022359437_IntialCreate.Designer.cs">
       <DependentUpon>201604022359437_IntialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604041421337_updateUserID.cs" />
+    <Compile Include="Migrations\201604041421337_updateUserID.Designer.cs">
+      <DependentUpon>201604041421337_updateUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604042358446_fixForeignKeys.cs" />
+    <Compile Include="Migrations\201604042358446_fixForeignKeys.Designer.cs">
+      <DependentUpon>201604042358446_fixForeignKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -208,6 +216,8 @@
     <Content Include="Content\Hamburger.css" />
     <Content Include="Content\Images\drkhayum.jpg" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\star-off.png" />
+    <Content Include="Content\Images\star-on.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -215,6 +225,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Accordian.less" />
+    <Content Include="Content\rating.less" />
     <None Include="Properties\PublishProfiles\ImaginationP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Hamburger.js" />
@@ -480,6 +491,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604022359437_IntialCreate.resx">
       <DependentUpon>201604022359437_IntialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604041421337_updateUserID.resx">
+      <DependentUpon>201604041421337_updateUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604042358446_fixForeignKeys.resx">
+      <DependentUpon>201604042358446_fixForeignKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
