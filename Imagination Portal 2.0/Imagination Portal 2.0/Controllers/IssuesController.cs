@@ -17,6 +17,7 @@ namespace Imagination_Portal_2._0.Controllers
         // GET: Issues
         public ActionResult Index()
         {
+            ViewBag.GUID = Guid.Parse(Request.Cookies["guidCookie"].Values["GUID"]);
             return View(db.Issues.ToList().OrderBy(x => x.Priority));
         }
 
@@ -54,7 +55,7 @@ namespace Imagination_Portal_2._0.Controllers
             {
                 db.Issues.Add(issue);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Challenges", new { });
             }
 
             return View(issue);
@@ -88,7 +89,7 @@ namespace Imagination_Portal_2._0.Controllers
             {
                 db.Entry(issue).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Challenges", new { } );
             }
             return View(issue);
         }
@@ -118,7 +119,7 @@ namespace Imagination_Portal_2._0.Controllers
             Issue issue = db.Issues.Find(id);
             db.Issues.Remove(issue);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Challenges", new { });
         }
 
         public JsonResult GetIssues()

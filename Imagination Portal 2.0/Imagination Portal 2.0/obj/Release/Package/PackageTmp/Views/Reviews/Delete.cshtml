@@ -12,14 +12,7 @@
     <h4>Review</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.Comment)
         </dt>
@@ -33,15 +26,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Score)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SolutionId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SolutionId)
+            <div class="selectrating">
+                @Html.RadioButtonFor(m => m.Score, "5", htmlAttributes: new { @id = "Score5" })<label for="Score5" title="Great">5 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "4", htmlAttributes: new { @id = "Score4" })<label for="Score4" title="Good">4 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "3", htmlAttributes: new { @id = "Score3" })<label for="Score3" title="Okay">3 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "2", htmlAttributes: new { @id = "Score2" })<label for="Score2" title="Not Good">2 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "1", htmlAttributes: new { @id = "Score1" })<label for="Score1" title="Bad">1 stars</label>
+            </div>
         </dd>
 
     </dl>

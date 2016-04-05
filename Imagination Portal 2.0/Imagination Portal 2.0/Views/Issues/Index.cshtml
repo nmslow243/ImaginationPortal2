@@ -64,6 +64,12 @@
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)sol@(j)">
                                             @Html.DisplayFor(modelItem => solution.Name)
                                         </a>
+                                        @if (solution.Reviews.Count > 0)
+                                        {
+                                            <div class="rating pull-right">
+                                                <div style="width: @(solution.Reviews.Average(model => model.Score) * 20)%"></div>
+                                            </div>
+                                        }
                                     </h4>
                                 </div>
                                 <div id="collapse@(i)sol@(j)" class="panel-collapse collapse">
@@ -97,7 +103,10 @@
                                                                 {
                                                                     <span>Guest</span>
                                                                 }
-                                                                <span class="badge pull-right">@Html.DisplayFor(modelItem => review.Score)</span>
+                                                                <div class="rating pull-right">
+                                                                    <div style="width: @(review.Score * 20)%"></div>
+                                                                </div>
+                                                                @*<span class="pull-right">@Html.DisplayFor(modelItem => review.Score)</span>*@
                                                             </h4>
                                                         </div>
                                                         @*<div id="collapserev@(i)" class="panel-collapse collapse">*@
@@ -106,8 +115,11 @@
                                                         </div>
 
                                                         <div class="panel-footer">
-                                                            @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.Id }, new { }) |
-                                                            @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.Id }, new { })
+                                                            @if(review.userGUID == ViewBag.GUID) {
+                                                                @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.Id }, new { })                                                                
+                                                                <span>|</span>
+                                                                @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.Id }, new { })
+                                                            }
                                                         </div>
                                                     </div>
                                                     @*</div>*@
@@ -117,9 +129,11 @@
                                     </div>
 
                                     <div class="panel-footer">
-                                        @Html.ActionLink("Edit", "Edit", "Solutions", new { id = solution.Id }, new { }) |
-                                        @Html.ActionLink("Delete", "Delete", "Solutions", new { id = solution.Id }, new { }) |
-                                        @Html.ActionLink("Add Review", "Create", "Solutions", new { id = solution.Id }, new { })
+                                        @if(solution.userGUID == ViewBag.GUID) {
+                                            @Html.ActionLink("Edit", "Edit", "Solutions", new { id = solution.Id }, new { }) <span>|</span>
+                                            @Html.ActionLink("Delete", "Delete", "Solutions", new { id = solution.Id }, new { }) <span>|</span>
+                                        }
+                                        @Html.ActionLink("Add Review", "Create", "Reviews", new { id = solution.Id }, new { })
                                     </div>
                                 </div>
                             </div>

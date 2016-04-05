@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Imagination_Portal_2._0.Models
 {
@@ -59,6 +60,10 @@ namespace Imagination_Portal_2._0.Models
             if (ModelState.IsValid)
             {
                 review.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
+                if (Request.IsAuthenticated)
+                {
+                    review.UserId = User.Identity.GetUserId();
+                }
                 db.Reviews.Add(review);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Challenges", new { });
@@ -121,7 +126,7 @@ namespace Imagination_Portal_2._0.Models
             Review review = db.Reviews.Find(id);
             db.Reviews.Remove(review);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Challenges", new { });
         }
 
         protected override void Dispose(bool disposing)

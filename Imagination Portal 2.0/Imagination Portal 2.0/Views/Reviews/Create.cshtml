@@ -16,14 +16,7 @@
         <h4>Review</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,9 +27,16 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Score, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*<div class="col-md-10">
                 @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+            </div>*@
+            <div class="selectrating">
+                @Html.RadioButtonFor(m => m.Score, "5", htmlAttributes: new { @id = "Score5" })<label for="Score5" title="Great">5 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "4", htmlAttributes: new { @id = "Score4" })<label for="Score4" title="Good">4 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "3", htmlAttributes: new { @id = "Score3" })<label for="Score3" title="Okay">3 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "2", htmlAttributes: new { @id = "Score2" })<label for="Score2" title="Not Good">2 stars</label>
+                @Html.RadioButtonFor(m => m.Score, "1", htmlAttributes: new { @id = "Score1" })<label for="Score1" title="Bad">1 stars</label>                
             </div>
         </div>
 

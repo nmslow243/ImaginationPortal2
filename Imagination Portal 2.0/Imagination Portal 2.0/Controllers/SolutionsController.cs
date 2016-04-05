@@ -94,7 +94,7 @@ namespace Imagination_Portal_2._0.Models
                     solution.InjectFrom(Final);
                     if (Request.IsAuthenticated)
                     {
-                        solution.UserId = int.Parse(User.Identity.GetUserId());
+                        solution.UserId = User.Identity.GetUserId();
                     }
                     solution.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
                     solution.currentStatus = (int)Utilities.solutionStatuses.Complete;
@@ -151,7 +151,7 @@ namespace Imagination_Portal_2._0.Models
                     solution.InjectFrom(Step1);
                     if (Request.IsAuthenticated)
                     {
-                        solution.UserId = int.Parse(User.Identity.GetUserId());
+                        solution.UserId = User.Identity.GetUserId();
                     }
                     solution.userGUID = Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]);
                     solution.currentStatus = (int)Utilities.solutionStatuses.Step2;
@@ -281,7 +281,7 @@ namespace Imagination_Portal_2._0.Models
                 db.Entry(solution).State = EntityState.Modified;
                 
                 db.SaveChanges();
-                return RedirectToAction("Details", "Solutions", new { id = solution.Id });
+                return RedirectToAction("Index", "Challenges", new { });
                 //return RedirectToAction("Details", "Issues", new { id = solution.IssueId });
             }
 
@@ -311,7 +311,7 @@ namespace Imagination_Portal_2._0.Models
             Solution solution = db.Solutions.Find(id);
             db.Solutions.Remove(solution);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Challenges", new { });
         }
 
         public ActionResult TutorialStep1()

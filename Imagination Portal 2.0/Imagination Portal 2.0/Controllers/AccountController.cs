@@ -166,8 +166,8 @@ namespace Imagination_Portal_2._0.Controllers
                 
                 if (result.Succeeded)
                 {
-                    db.Solutions.Where(x => x.userGUID == user.GUID).Update(x => new Solution { UserId = int.Parse(User.Identity.GetUserId()) });
-                    db.Reviews.Where(x => x.userGUID == user.GUID).Update(x => new Review { UserId = int.Parse(User.Identity.GetUserId()) });
+                    db.Solutions.Where(x => x.userGUID == user.GUID).Update(x => new Solution { UserId = user.Id });
+                    db.Reviews.Where(x => x.userGUID == user.GUID).Update(x => new Review { UserId = user.Id });
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -408,7 +408,7 @@ namespace Imagination_Portal_2._0.Controllers
             HttpCookie guestCookie = new HttpCookie("guidCookie");
             guestCookie["GUID"] = null;
             guestCookie.Expires = DateTime.Now.AddDays(-1);
-            Request.Cookies.Add(guestCookie);
+            Response.Cookies.Add(guestCookie);
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }

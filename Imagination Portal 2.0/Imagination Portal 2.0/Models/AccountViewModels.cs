@@ -70,7 +70,6 @@ namespace Imagination_Portal_2._0.Models
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
