@@ -120,6 +120,10 @@
                                                                 <span>|</span>
                                                                 @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.Id }, new { })
                                                             }
+                                                            else if(User.IsInRole("Admin"))
+                                                            {
+                                                                @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.Id }, new { })
+                                                            }
                                                         </div>
                                                     </div>
                                                     @*</div>*@
@@ -131,6 +135,10 @@
                                     <div class="panel-footer">
                                         @if(solution.userGUID == ViewBag.GUID) {
                                             @Html.ActionLink("Edit", "Edit", "Solutions", new { id = solution.Id }, new { }) <span>|</span>
+                                            @Html.ActionLink("Delete", "Delete", "Solutions", new { id = solution.Id }, new { }) <span>|</span>
+                                        }
+                                        else if (User.IsInRole("Admin"))
+                                        {
                                             @Html.ActionLink("Delete", "Delete", "Solutions", new { id = solution.Id }, new { }) <span>|</span>
                                         }
                                         @Html.ActionLink("Add Review", "Create", "Reviews", new { id = solution.Id }, new { })

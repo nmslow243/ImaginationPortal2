@@ -23,6 +23,7 @@ namespace Imagination_Portal_2._0
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/hamburger.js",
                       //"~/Scripts/accordian.js",
+                      "~/Scripts/GoogleAnalytics.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

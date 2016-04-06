@@ -296,7 +296,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Solution solution = db.Solutions.Find(id);
-            if (solution == null)
+            if (solution == null || (solution.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]) && !User.IsInRole("Admin")))
             {
                 return HttpNotFound();
             }
