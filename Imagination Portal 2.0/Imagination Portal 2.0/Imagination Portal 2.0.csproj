@@ -228,6 +228,7 @@
     <Content Include="Content\rating.less" />
     <None Include="Properties\PublishProfiles\ImaginationP.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\GoogleAnalytics.js" />
     <Content Include="Scripts\Hamburger.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -475,6 +476,9 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Manage\ManageAdmins.cshtml" />
+    <Content Include="Views\Manage\AddToRole.cshtml" />
+    <Content Include="Views\Manage\RemoveFromRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

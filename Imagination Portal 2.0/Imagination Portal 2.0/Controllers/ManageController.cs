@@ -7,12 +7,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Imagination_Portal_2._0.Models;
+using System.Net;
 
 namespace Imagination_Portal_2._0.Controllers
 {
+
     [Authorize]
     public class ManageController : AppController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -97,6 +100,55 @@ namespace Imagination_Portal_2._0.Controllers
         public ActionResult AddPhoneNumber()
         {
             return View();
+        }
+        [Authorize(Roles = "Admin")]
+        // GET: Manage/RemoveFromRole/5
+        public ActionResult RemoveFromRole(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = db.Users.Find(id);
+            if (user == null || !UserManager.IsInRole(id,"Admin") || user.Id == User.Identity.GetUserId())
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+        [Authorize(Roles = "Admin")]
+        // POST: Manage/RemoveFromRole/5
+        [HttpPost, ActionName("RemoveFromRole")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveConfirmed(string id)
+        {
+            UserManager.RemoveFromRole(id, "Admin");
+            return RedirectToAction("ManageAdmins", "Manage", new { });
+        }
+        [Authorize(Roles = "Admin")]
+        // GET: Manage/AddToRole
+        public ActionResult AddToRole()
+        {
+            ViewBag.users = new SelectList(db.Users.ToList().Where(x => !UserManager.IsInRole(x.Id, "Admin")), "Id", "UserName");
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        // POST: Reviews/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToRole(ApplicationUser user)
+        {
+            UserManager.AddToRole(user.UserName, "Admin");
+            return RedirectToAction("ManageAdmins", "Manage", new { });
+        }
+        [Authorize(Roles = "Admin")]
+        // GET: Manage/AddToRole
+        public ActionResult ManageAdmins()
+        {
+            var users = db.Users.ToList().Where(x => UserManager.IsInRole(x.Id,"Admin"));
+            return View(users);
         }
 
         //

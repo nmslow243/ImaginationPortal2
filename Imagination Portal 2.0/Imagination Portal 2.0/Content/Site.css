@@ -89,6 +89,10 @@ h1, .break-bold {
     margin-left:0px;
 }
 
+.form-group select {
+    margin-top:11px;
+}
+
 .selectrating {
     float:left;
 }

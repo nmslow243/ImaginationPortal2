@@ -80,7 +80,7 @@ namespace Imagination_Portal_2._0.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Review review = db.Reviews.Find(id);
-            if (review == null || review.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]))
+            if (review == null || (review.userGUID != Guid.Parse(HttpContext.Request.Cookies["guidCookie"].Values["GUID"]) && !User.IsInRole("Admin")))
             {
                 return HttpNotFound();
             }

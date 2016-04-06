@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Imagination_Portal_2._0.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Manage Admins";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage Admins</h2>
+
+<p>
+    @Html.ActionLink("Add to Role", "AddToRole")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.GUID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.GUID)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Remove From Role", "RemoveFromRole", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -27,6 +27,8 @@ namespace Imagination_Portal_2._0.Models
         public IDbSet<Issue> Issues { get; set; }
         public IDbSet<Solution> Solutions { get; set; }
         public IDbSet<Review> Reviews { get; set; }
+
+        //public System.Data.Entity.DbSet<Imagination_Portal_2._0.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 
 
